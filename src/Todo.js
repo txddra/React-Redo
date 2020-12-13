@@ -1,10 +1,15 @@
 import React from 'react';
 
-const Todo = ({ todoList}) =>{
+const Todo = ({ todoList: {todo,id }, removeTodo}) =>{
     return(
         <div>
-
-            {todoList.todo}
+{/* destructured */}
+            {todo}
+            <div>
+                <button>Done</button>
+                <button onClick={()=> removeTodo(id)}>Delete</button>
+                </div>
+                <hr />
 
         </div>
     )

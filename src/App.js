@@ -24,7 +24,7 @@ function App() {
       id: uuidv4(),
       todo: "test your luck",
       isComplete: false
-    }
+    },
 
   ];
 
@@ -32,32 +32,46 @@ function App() {
 
 //function that adds to the todo list
 function addTodo(todo){
-  const newTodo =[
+  const newTodos =[
     ...todos,
     {
       todo: todo,
       isComplete: false,
-      id: uuidv4()
+      id: uuidv4(),
     }
   ]
-  //call the function
-setTodos(newTodo)
+  //call the function 
+  setTodos(newTodos)
+}
+
+function removeTodo(id){
+  let newTodos =[...todos];
+
+  newTodos =newTodos.filter(todo => todo.id !== id);
+
+  setTodos(newTodos)
+
+
 }
 
 
 
-//gets all the todo's to render
+// gets all the todo's to render
   function showAllTodo(){
     return todos.map((todoList)=>{
-      return <Todo todo={todoList.id} todoList={todoList} />
+      return <Todo 
+      todo={todoList.id} 
+      todoList={todoList} 
+      removeTodo={removeTodo}/>
     })
   }
 
   function showTodoInput() {
     //this refers back to the code written in another file 
-    return <TodoInput
-     addTodo ={addTodo}/>
+    return <TodoInput addTodo = {addTodo}/>
   }
+
+
   return (
     <div className="App">
      {showTodoInput()}
