@@ -27,14 +27,19 @@ function App() {
 
   const [todos, setTodos] = useState(initialTodoArray);
 
-
+//gets all the todo's to render
   function showAllTodo(){
     return todos.map((todoList)=>{
       return <Todo todo={todoList.id} todoList={todoList} />
     })
   }
+
+  function showTodoInput() {
+    return <TodoInput />
+  }
   return (
     <div className="App">
+     {showTodoInput()}
      {showAllTodo()}
     </div>
   );
