@@ -11,21 +11,40 @@ function App() {
   let initialTodoArray=[
     {
       id: uuidv4(),
-      todo: "test your patience"
+      todo: "test your patience",
+      isComplete: false,
     },
     
     {
       id: uuidv4(),
-      todo: "test your skill"
+      todo: "test your skill",
+      isComplete :false,
     },
     {
       id: uuidv4(),
-      todo: "test your luck"
+      todo: "test your luck",
+      isComplete: false
     }
 
   ];
 
   const [todos, setTodos] = useState(initialTodoArray);
+
+//function that adds to the todo list
+function addTodo(todo){
+  const newTodo =[
+    ...todos,
+    {
+      todo: todo,
+      isComplete: false,
+      id: uuidv4()
+    }
+  ]
+  //call the function
+setTodos(newTodo)
+}
+
+
 
 //gets all the todo's to render
   function showAllTodo(){
@@ -35,7 +54,9 @@ function App() {
   }
 
   function showTodoInput() {
-    return <TodoInput />
+    //this refers back to the code written in another file 
+    return <TodoInput
+     addTodo ={addTodo}/>
   }
   return (
     <div className="App">
