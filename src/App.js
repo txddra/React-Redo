@@ -3,7 +3,7 @@ import  {v4 as uuidv4} from "uuid"
 import Todo from "./Todo";
 import TodoInput from "./TodoInput";
 
-import {TodoInputContext} from './context/context'
+import {TodoInputContext, TodoContext} from './context/context'
 
 import "./App.css";
 
@@ -80,12 +80,16 @@ function completeTodo(id) {
 
 // gets all the todo's to render
   function showAllTodo(){
-    return todos.map((todoList)=>{
-      return <Todo 
-      todo={todoList.id} 
-      todoList={todoList} 
-      removeTodo={removeTodo}
-      completeTodo={completeTodo}/>
+    todos.map((todoList)=>{
+        return(
+        <TodoContext.Provider
+        key={todoList.id}
+        value={{todoList, removeTodo, completeTodo}}>
+        <Todo />
+      </TodoContext.Provider>
+      )
+      
+
     })
   }
 
@@ -93,7 +97,7 @@ function completeTodo(id) {
     //this refers back to the code written in another file 
     return (
       <TodoInputContext.Provider value ={{addTodo}}>
-        
+
         <TodoInput />
 
       </TodoInputContext.Provider>
