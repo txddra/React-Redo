@@ -1,22 +1,22 @@
 import React, { useState } from "react";
+import Todo from "./Todo"
 
 const TodoInput =({addTodo})=>{
 
-    const [value, setValue] = useState("");
+    const [todo, setTodo] = useState("");
 
     function handleCreateNewTodo(e) {
-        e.preventDefault();
+       e.preventDefault()
 
-        addTodo(value)
+        addTodo(todo)
     }
 
     return (
-        <form>
+        <form onSubmit={handleCreateNewTodo}>
             <input 
-            onSubmit={handleCreateNewTodo}
             type ="text"
-            value={value}
-            onChange={e =>setValue(e.target.value)}
+            value={todo}
+            onChange={(e) =>setTodo(e.target.value)}
             />
 
             <button>Submit</button>

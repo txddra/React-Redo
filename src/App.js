@@ -5,8 +5,9 @@ import TodoInput from "./TodoInput";
 
 import "./App.css";
 
-function App() {
 
+
+function App() {
 
   let initialTodoArray=[
     {
@@ -38,10 +39,10 @@ function addTodo(todo){
       todo: todo,
       isComplete: false,
       id: uuidv4(),
-    }
-  ]
+    },
+  ];
   //call the function 
-  setTodos(newTodos)
+  setTodos(newTodos);
 }
 
 function removeTodo(id){
