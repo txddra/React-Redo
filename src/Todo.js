@@ -1,6 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import  {TodoContext}  from "./context/context";
 
-const Todo = ({ todoList: {todo,id, isComplete}, removeTodo, completeTodo}) =>{
+const Todo = () =>{
+
+    const {
+        todoList: {todo,id, isComplete}, 
+        removeTodo, 
+        completeTodo
+    } = useContext(TodoContext);
 
     // function  deleteByID() {
     //     removeTodo(id)

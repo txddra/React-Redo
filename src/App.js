@@ -3,7 +3,9 @@ import  {v4 as uuidv4} from "uuid"
 import Todo from "./Todo";
 import TodoInput from "./TodoInput";
 
-import {TodoInputContext, TodoContext} from './context/context'
+import TodoContext ,{TodoInputContext} from './context/context';
+
+
 
 import "./App.css";
 
@@ -71,6 +73,7 @@ function completeTodo(id) {
       todo.isComplete = true;
       return todo;
     }
+    return todo
   });
 
   setTodos(newTodos);
