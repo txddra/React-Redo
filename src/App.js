@@ -3,6 +3,8 @@ import  {v4 as uuidv4} from "uuid"
 import Todo from "./Todo";
 import TodoInput from "./TodoInput";
 
+import {TodoInputContext} from './context/context'
+
 import "./App.css";
 
 
@@ -52,7 +54,26 @@ function removeTodo(id){
 
   setTodos(newTodos)
 
+}
 
+function completeTodo(id) {
+  let newTodos =[...todos];
+
+  //map through the array and toggle the completion on click
+  newTodos.map((todo)=>{
+    if(todo.id === id && todo.isComplete){
+      todo.isComplete = false;
+      return todo;
+
+    }
+
+    if(todo.id === id && !todo.isComplete){
+      todo.isComplete = true;
+      return todo;
+    }
+  });
+
+  setTodos(newTodos);
 }
 
 
@@ -63,13 +84,23 @@ function removeTodo(id){
       return <Todo 
       todo={todoList.id} 
       todoList={todoList} 
-      removeTodo={removeTodo}/>
+      removeTodo={removeTodo}
+      completeTodo={completeTodo}/>
     })
   }
 
   function showTodoInput() {
     //this refers back to the code written in another file 
-    return <TodoInput addTodo = {addTodo}/>
+    return (
+      <TodoInputContext.Provider value ={{addTodo}}>
+        
+        <TodoInput />
+
+      </TodoInputContext.Provider>
+      
+
+
+    );
   }
 
 
